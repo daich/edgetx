@@ -1884,6 +1884,10 @@ int main()
   }
 #endif
 
+#if defined(EEPROM) && defined(EEPROM_RLC)
+  eepromInit();
+#endif
+  
   tasksStart();
 }
 
