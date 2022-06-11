@@ -167,6 +167,11 @@ extern "C" void touchDriverRead(lv_indev_drv_t *drv, lv_indev_data_t *data)
   }
 
   TouchState st = touchPanelRead();
+#if defined(TOUCH_PANEL_INVERTED) && !defined(SIMU)
+      st.x = LCD_W - st.x;
+      st.y = LCD_H - st.y;
+#endif
+
   if(st.event == TE_NONE) {
     TRACE("TE_NONE");
   } else if(st.event == TE_DOWN || st.event == TE_SLIDE) {
